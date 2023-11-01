@@ -633,6 +633,7 @@ public class Npc {
      *
      * @param connection The connection to manage
      * @param location   The location to check
+     * @return Whether the connection is in range
      */
     public boolean manageInRange(PlayerConnection connection, Location location) {
         World world = connection.getPlayer().getWorld();
