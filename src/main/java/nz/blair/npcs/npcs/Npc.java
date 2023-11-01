@@ -188,7 +188,6 @@ public class Npc {
     /**
      * Removes all connections from the allowed connections set.
      * If the NPC is not global, only connections in this set will be able to see the NPC.
-     * This will be cleaned up automatically when the connection disconnects.
      * This will also remove all connections from the connections set.
      */
     public void removeAllowedConnections() {
