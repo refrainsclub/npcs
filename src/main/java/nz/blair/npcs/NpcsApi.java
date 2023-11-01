@@ -49,6 +49,7 @@ public class NpcsApi {
      * This will automatically remove the NPC from the NPC manager.
      *
      * @param npc The NPC to delete
+     * @return Whether the NPC was deleted
      */
     public boolean deleteNpc(Npc npc) {
         npc.removeConnections();
