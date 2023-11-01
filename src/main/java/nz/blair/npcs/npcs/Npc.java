@@ -112,14 +112,22 @@ public class Npc {
 
     /**
      * Adds multiple connections to the NPC.
-     * You should not need to call this method.
-     * This method is used internally.
      * It also checks if each connection is allowed to see the NPC.
      *
      * @param connections The connections to add
      */
     public void addConnections(Collection<PlayerConnection> connections) {
         connections.forEach(this::addConnection);
+    }
+
+    /**
+     * Removes multiple connections from the NPC.
+     *
+     * @param connections The connections to remove
+     */
+    public void removeConnections(Collection<PlayerConnection> connections) {
+        connections.forEach(this::destroy);
+        connections.clear();
     }
 
     /**
@@ -181,6 +189,17 @@ public class Npc {
      */
     public void removeAllowedConnections(Collection<PlayerConnection> connections) {
         connections.forEach(this::removeAllowedConnection);
+    }
+
+    /**
+     * Removes all connections from the allowed connections set.
+     * If the NPC is not global, only connections in this set will be able to see the NPC.
+     * This will be cleaned up automatically when the connection disconnects.
+     * This will also remove all connections from the connections set.
+     */
+    public void removeAllowedConnections() {
+        allowedConnections.forEach(this::removeConnection);
+        allowedConnections.clear();
     }
 
     /**
