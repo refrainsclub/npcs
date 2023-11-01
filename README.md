@@ -22,9 +22,12 @@ NpcsApi npcsApi = NpcsPlugin.getApi()
 // Create a global NPC
 Npc npc = npcsApi.createNpc("Test", location, true);
 
-// Get a skin from Mojang API
-Skin skin = SkinUtil.getSkin("Notch");
+// Run an asynchronous task to prevent blocking the main thread 
+Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+    // Get a skin from the Mojang API
+    Skin skin = SkinUtil.getSkin("Notch");
 
-// Set the NPC's skin
-npc.setSkin(skin);
+    // Set the NPC's skin
+    npc.setSkin(skin);
+});
 ```
