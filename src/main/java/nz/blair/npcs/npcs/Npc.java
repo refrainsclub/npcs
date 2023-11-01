@@ -247,6 +247,7 @@ public class Npc {
         connection.sendPacket(spawnPacket);
 
         updateLocation(connection);
+        updateArmour(connection);
 
         // This will remove the name from the player list after 8 seconds
         // The NPC will still be visible
@@ -398,9 +399,13 @@ public class Npc {
         updateHelmet();
     }
 
-    private void updateHelmet() {
+    private void updateHelmet(PlayerConnection connection) {
         PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 1, CraftItemStack.asNMSCopy(helmet));
-        connections.forEach(connection -> connection.sendPacket(equipmentPacket));
+        connection.sendPacket(equipmentPacket);
+    }
+
+    private void updateHelmet() {
+        connections.forEach(this::updateHelmet);
     }
 
     /**
@@ -423,9 +428,13 @@ public class Npc {
         updateChestplate();
     }
 
-    private void updateChestplate() {
+    private void updateChestplate(PlayerConnection connection) {
         PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 2, CraftItemStack.asNMSCopy(chestplate));
-        connections.forEach(connection -> connection.sendPacket(equipmentPacket));
+        connection.sendPacket(equipmentPacket);
+    }
+
+    private void updateChestplate() {
+        connections.forEach(this::updateChestplate);
     }
 
     /**
@@ -448,9 +457,13 @@ public class Npc {
         updateLeggings();
     }
 
-    private void updateLeggings() {
+    private void updateLeggings(PlayerConnection connection) {
         PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 3, CraftItemStack.asNMSCopy(leggings));
-        connections.forEach(connection -> connection.sendPacket(equipmentPacket));
+        connection.sendPacket(equipmentPacket);
+    }
+
+    private void updateLeggings() {
+        connections.forEach(this::updateLeggings);
     }
 
     /**
@@ -473,9 +486,13 @@ public class Npc {
         updateBoots();
     }
 
-    private void updateBoots() {
+    private void updateBoots(PlayerConnection connection) {
         PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 4, CraftItemStack.asNMSCopy(boots));
-        connections.forEach(connection -> connection.sendPacket(equipmentPacket));
+        connection.sendPacket(equipmentPacket);
+    }
+
+    private void updateBoots() {
+        connections.forEach(this::updateBoots);
     }
 
     /**
@@ -486,6 +503,13 @@ public class Npc {
     @Nullable
     public ItemStack getBoots() {
         return boots;
+    }
+
+    private void updateArmour(PlayerConnection connection) {
+        updateHelmet(connection);
+        updateChestplate(connection);
+        updateLeggings(connection);
+        updateBoots(connection);
     }
 
     private void updateArmour() {
