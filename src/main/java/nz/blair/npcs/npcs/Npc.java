@@ -101,7 +101,6 @@ public class Npc {
      * Removes a connection from the NPC.
      * You should not need to call this method.
      * This method is used internally.
-     * This will be cleaned up automatically when the connection disconnects.
      *
      * @param connection The connection to remove
      * @return Whether the connection was removed
