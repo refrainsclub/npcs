@@ -147,7 +147,6 @@ public class Npc {
     /**
      * Removes a connection from the allowed connections set.
      * If the NPC is not global, only connections in this set will be able to see the NPC.
-     * This will be cleaned up automatically when the connection disconnects.
      * This will also remove the connection from the connections set.
      *
      * @param connection The connection to remove
