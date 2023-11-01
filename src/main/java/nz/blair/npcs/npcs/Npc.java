@@ -622,7 +622,7 @@ public class Npc {
         World world = connection.getPlayer().getWorld();
         Location npcLocation = getLocation();
         World npcWorld = npcLocation.getWorld();
-        boolean sameWorld = world == npcWorld;
+        boolean sameWorld = world.equals(npcWorld);
 
         if (!sameWorld) {
             removeConnection(connection);
