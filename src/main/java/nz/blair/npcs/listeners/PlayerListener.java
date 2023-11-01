@@ -38,8 +38,8 @@ public class PlayerListener implements Listener {
         PlayerConnection connection = NmsUtil.getPlayerConnection(player);
 
         npcManager.getNpcs().forEach(npc -> {
-            // This will also remove the connection from the NPC
             npc.removeAllowedConnection(connection);
+            npc.removeConnection(connection);
         });
     }
 
