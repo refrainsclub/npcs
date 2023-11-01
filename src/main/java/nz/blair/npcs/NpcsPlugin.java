@@ -29,7 +29,7 @@ public final class NpcsPlugin extends JavaPlugin {
         PacketHandlerInjector packetHandlerInjector = new PacketHandlerInjector(packetInboundListener);
 
         PluginManager pluginManager = getServer().getPluginManager();
-        pluginManager.registerEvents(new PlayerListener(packetHandlerInjector, npcManager), this);
+        pluginManager.registerEvents(new PlayerListener(packetHandlerInjector, npcManager, this), this);
     }
 
     @Override
