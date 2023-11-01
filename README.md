@@ -8,15 +8,16 @@ This is a plugin that enables you to create lightweight NPCs.
 2. Install the plugin to your Spigot server.
 3. Add the plugin as a dependency to your Spigot plugin.
 
-## Plugin Goals
+## Goals
 
-- The aim of this plugin is to provide a lightweght NPCs solution.
-- This plugin will NOT support custom logic, it is up to you to implement.
+- The aim of this plugin is to provide a lightweght NPC solution.
+- This plugin will NOT support AI logic, it is up to you to implement.
+- In the future, newer versions may be supported.
 
 ## Example
 
 ```java
-// Get the NPCs API
+// Get the NPC API
 NpcsApi npcsApi = NpcsPlugin.getApi()
 
 // Create a global NPC
