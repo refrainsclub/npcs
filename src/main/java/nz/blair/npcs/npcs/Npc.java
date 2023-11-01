@@ -629,8 +629,8 @@ public class Npc {
             return;
         }
 
-        double distance = npcLocation.distance(location);
-        boolean inRange = distance <= 32;
+        double distanceSquared = npcLocation.distanceSquared(location);
+        boolean inRange = distanceSquared <= 1024;
 
         if (inRange) {
             addConnection(connection);
