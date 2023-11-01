@@ -1,0 +1,3 @@
+name: npcs
+version: '${version}'
+main: nz.blair.npcs.NpcsPlugin
