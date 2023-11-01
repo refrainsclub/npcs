@@ -1,11 +1,9 @@
 package nz.blair.npcs.npcs;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class NpcManager {
-    private final List<Npc> npcs = new ArrayList<>();
+    private final Set<Npc> npcs = new HashSet<>();
 
     /**
      * Add an NPC to the manager.
@@ -26,11 +24,11 @@ public class NpcManager {
     }
 
     /**
-     * Get a list of all NPCs.
+     * Get a set of all NPCs.
      *
-     * @return A list of all NPCs
+     * @return A set of all NPCs
      */
-    public List<Npc> getNpcs() {
-        return Collections.unmodifiableList(npcs);
+    public Set<Npc> getNpcs() {
+        return Collections.unmodifiableSet(npcs);
     }
 }

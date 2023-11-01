@@ -5,7 +5,7 @@ import nz.blair.npcs.npcs.NpcFactory;
 import nz.blair.npcs.npcs.NpcManager;
 import org.bukkit.Location;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * The API for the NPCs plugin.
@@ -56,11 +56,11 @@ public class NpcsApi {
     }
 
     /**
-     * Get a list of all NPCs.
+     * Get a set of all NPCs.
      *
-     * @return A list of all NPCs
+     * @return A set of all NPCs
      */
-    public List<Npc> getNpcs() {
+    public Set<Npc> getNpcs() {
         return npcManager.getNpcs();
     }
 }
