@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'nz.blair'
-version = '1.0-SNAPSHOT'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -18,6 +18,9 @@ dependencies {
 
 def targetJavaVersion = 8
 java {
+    withJavadocJar()
+    withSourcesJar()
+
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
@@ -44,9 +47,6 @@ processResources {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'nz.blair'
-            artifactId = 'npcs'
-            version = "1.0-SNAPSHOT"
             from components.java
         }
     }
