@@ -4,7 +4,7 @@ This is a plugin that enables you to create lightweight NPCs.
 
 ## Usage
 
-1. Build the plugin using `gradle jar`
+1. Publish the plugin to your local maven repo using `gradle publish`
 2. Install the plugin to your Spigot server.
 3. Add the plugin as a dependency to your Spigot plugin.
 
