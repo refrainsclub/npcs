@@ -50,9 +50,9 @@ public class NpcsApi {
      *
      * @param npc The NPC to delete
      */
-    public void deleteNpc(Npc npc) {
+    public boolean deleteNpc(Npc npc) {
         npc.removeConnections();
-        npcManager.removeNpc(npc);
+        return npcManager.removeNpc(npc);
     }
 
     /**

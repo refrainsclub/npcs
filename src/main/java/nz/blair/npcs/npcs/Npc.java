@@ -19,7 +19,7 @@ import java.util.*;
  * You should use the {@link nz.blair.npcs.NpcsApi} singleton to create NPCs.
  * You can get this singleton by calling {@link nz.blair.npcs.NpcsPlugin#getApi()}.
  */
-@SuppressWarnings("unused") // This class is used by other plugins
+@SuppressWarnings({"unused", "UnusedReturnValue"}) // This class is used by other plugins
 public class Npc {
     private final JavaPlugin plugin;
     private final EntityPlayer entityPlayer;
@@ -81,10 +81,11 @@ public class Npc {
      * This will be cleaned up automatically when the connection disconnects.
      *
      * @param connection The connection to add
+     * @return Whether the connection was added
      */
-    public void addConnection(PlayerConnection connection) {
+    public boolean addConnection(PlayerConnection connection) {
         if (!global && !allowedConnections.contains(connection)) {
-            return;
+            return false;
         }
 
         boolean added = connections.add(connection);
@@ -92,6 +93,8 @@ public class Npc {
         if (added) {
             spawn(connection);
         }
+
+        return added;
     }
 
     /**
@@ -101,13 +104,16 @@ public class Npc {
      * This will be cleaned up automatically when the connection disconnects.
      *
      * @param connection The connection to remove
+     * @return Whether the connection was removed
      */
-    public void removeConnection(PlayerConnection connection) {
+    public boolean removeConnection(PlayerConnection connection) {
         boolean removed = connections.remove(connection);
 
         if (removed) {
             destroy(connection);
         }
+
+        return removed;
     }
 
     /**
@@ -146,12 +152,17 @@ public class Npc {
      * This will be cleaned up automatically when the connection disconnects.
      *
      * @param connection The connection to add
+     * @return Whether the connection was added
      */
-    public void addAllowedConnection(PlayerConnection connection) {
-        allowedConnections.add(connection);
+    public boolean addAllowedConnection(PlayerConnection connection) {
+        boolean added = allowedConnections.add(connection);
 
-        // Add connection based on whether the connection is in range
-        manageInRange(connection, connection.getPlayer().getLocation());
+        if (added) {
+            // Add connection based on whether the connection is in range
+            manageInRange(connection, connection.getPlayer().getLocation());
+        }
+
+        return added;
     }
 
     /**
@@ -161,12 +172,17 @@ public class Npc {
      * This will also remove the connection from the connections set.
      *
      * @param connection The connection to remove
+     * @return Whether the connection was removed
      */
-    public void removeAllowedConnection(PlayerConnection connection) {
-        allowedConnections.remove(connection);
+    public boolean removeAllowedConnection(PlayerConnection connection) {
+        boolean removed = allowedConnections.remove(connection);
 
-        // Use this method so that it will destroy the npc for the connection
-        removeConnection(connection);
+        if (removed) {
+            // Use this method so that it will destroy the npc for the connection
+            removeConnection(connection);
+        }
+
+        return removed;
     }
 
     /**
@@ -618,7 +634,7 @@ public class Npc {
      * @param connection The connection to manage
      * @param location   The location to check
      */
-    public void manageInRange(PlayerConnection connection, Location location) {
+    public boolean manageInRange(PlayerConnection connection, Location location) {
         World world = connection.getPlayer().getWorld();
         Location npcLocation = getLocation();
         World npcWorld = npcLocation.getWorld();
@@ -626,7 +642,7 @@ public class Npc {
 
         if (!sameWorld) {
             removeConnection(connection);
-            return;
+            return false;
         }
 
         double distanceSquared = npcLocation.distanceSquared(location);
@@ -637,5 +653,7 @@ public class Npc {
         } else {
             removeConnection(connection);
         }
+
+        return inRange;
     }
 }

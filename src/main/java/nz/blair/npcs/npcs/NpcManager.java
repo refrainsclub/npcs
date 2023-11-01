@@ -9,18 +9,21 @@ public class NpcManager {
      * Add an NPC to the manager.
      *
      * @param npc The NPC to add
+     * @return Whether the NPC was added
      */
-    public void addNpc(Npc npc) {
-        npcs.add(npc);
+    @SuppressWarnings("UnusedReturnValue") // This return value could be useful in the future
+    public boolean addNpc(Npc npc) {
+        return npcs.add(npc);
     }
 
     /**
      * Remove an NPC from the manager.
      *
      * @param npc The NPC to remove
+     * @return Whether the NPC was removed
      */
-    public void removeNpc(Npc npc) {
-        npcs.remove(npc);
+    public boolean removeNpc(Npc npc) {
+        return npcs.remove(npc);
     }
 
     /**
