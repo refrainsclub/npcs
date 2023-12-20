@@ -299,6 +299,36 @@ public class Npc {
     }
 
     /**
+     * Sets the name of the NPC.
+     *
+     * @param name The name to set
+     */
+    public void setName(String name) {
+        NmsUtil.setField(entityPlayer.getProfile(), "name", name);
+        respawn();
+    }
+
+    /**
+     * Sets the name and skin of the NPC.
+     * This method can prevent the extra respawn when updating the game profile.
+     *
+     * @param skin The skin to set
+     * @param name The name to set
+     */
+    public void setNameAndSkin(String name, Skin skin) {
+        GameProfile gameProfile = entityPlayer.getProfile();
+        NmsUtil.setField(entityPlayer.getProfile(), "name", name);
+
+        gameProfile.getProperties().removeAll("textures");
+        if (skin != null) {
+            Property property = new Property("textures", skin.getValue(), skin.getSignature());
+            gameProfile.getProperties().put("textures", property);
+        }
+
+        respawn();
+    }
+
+    /**
      * Sets the location of the NPC.
      *
      * @param location The location to set
@@ -352,6 +382,7 @@ public class Npc {
      */
     public void setSkin(@Nullable Skin skin) {
         GameProfile gameProfile = entityPlayer.getProfile();
+
         gameProfile.getProperties().removeAll("textures");
         if (skin != null) {
             Property property = new Property("textures", skin.getValue(), skin.getSignature());
