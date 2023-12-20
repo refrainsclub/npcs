@@ -24,18 +24,6 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Setup BuildTools
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: mkdir BuildTools
-
-      - name: Download BuildTools
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: wget -O BuildTools/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-
-      - name: 1.8.8
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: cd BuildTools && java -jar BuildTools.jar --rev 1.8.8
-
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
