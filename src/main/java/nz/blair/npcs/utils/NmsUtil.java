@@ -60,4 +60,15 @@ public class NmsUtil {
             return null;
         }
     }
+
+    public static void setField(Object object, String name, Object value) {
+        try {
+            Field field = object.getClass().getDeclaredField(name);
+            field.setAccessible(true);
+            field.set(object, value);
+            field.setAccessible(false);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            LoggerUtil.warning("Failed to set field: " + name + " from object: " + object.getClass().getSimpleName(), e);
+        }
+    }
 }
