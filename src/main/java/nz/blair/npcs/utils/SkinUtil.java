@@ -77,7 +77,8 @@ public class SkinUtil {
             }
             JsonObject profileJson = new JsonParser().parse(profileString).getAsJsonObject();
             String uuidString = profileJson.get("id").getAsString();
-            return UUID.fromString(uuidString);
+            String uuidStringDashes = uuidString.replaceFirst("(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)", "$1-$2-$3-$4-$5");
+            return UUID.fromString(uuidStringDashes);
         } catch (Exception e) {
             LoggerUtil.warning("Failed to get UUID of " + username, e);
         }
