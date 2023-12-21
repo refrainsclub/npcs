@@ -465,7 +465,7 @@ public class Npc {
     }
 
     private void updateHelmet(PlayerConnection connection) {
-        PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 1, CraftItemStack.asNMSCopy(helmet));
+        PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 4, CraftItemStack.asNMSCopy(helmet));
         connection.sendPacket(equipmentPacket);
     }
 
@@ -494,7 +494,7 @@ public class Npc {
     }
 
     private void updateChestplate(PlayerConnection connection) {
-        PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 2, CraftItemStack.asNMSCopy(chestplate));
+        PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 3, CraftItemStack.asNMSCopy(chestplate));
         connection.sendPacket(equipmentPacket);
     }
 
@@ -523,7 +523,7 @@ public class Npc {
     }
 
     private void updateLeggings(PlayerConnection connection) {
-        PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 3, CraftItemStack.asNMSCopy(leggings));
+        PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 2, CraftItemStack.asNMSCopy(leggings));
         connection.sendPacket(equipmentPacket);
     }
 
@@ -552,7 +552,7 @@ public class Npc {
     }
 
     private void updateBoots(PlayerConnection connection) {
-        PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 4, CraftItemStack.asNMSCopy(boots));
+        PacketPlayOutEntityEquipment equipmentPacket = new PacketPlayOutEntityEquipment(entityPlayer.getId(), 1, CraftItemStack.asNMSCopy(boots));
         connection.sendPacket(equipmentPacket);
     }
 
